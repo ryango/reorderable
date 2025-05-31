@@ -100,15 +100,6 @@ package struct ReorderableStack<Axis: ContainerAxis, Data: RandomAccessCollectio
         .onDisappear {
           positions.removeValue(forKey: datum.id)
         }
-        .sensoryFeedback(trigger: currentIndex) { old, new in
-          guard !feedbackDisabled else { return nil }
-          switch(old, new) {
-            case (.none, .some(_)): return .selection
-            case (.some(_), .none): return .selection
-            case (.some(_), .some(_)): return .impact(weight: .light)
-            default: return nil
-          }
-        }
     }
   }
   
